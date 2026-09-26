@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="6dp"
+    android:background="@drawable/bg_model_card"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="14dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Emoji / Icon Circle -->
+    <FrameLayout
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_action_btn">
+
+        <TextView
+            android:id="@+id/tvModelEmoji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="22sp"
+            tools:text="🔬" />
+    </FrameLayout>
+
+    <!-- Details Column -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="14dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvModelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F8FAFC"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Microscope" />
+
+            <TextView
+                android:id="@+id/tvCategoryTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_status_chip"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
+                android:textColor="#38BDF8"
+                android:textSize="10sp"
+                tools:text="Science" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvModelDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textColor="#94A3B8"
+            android:textSize="12sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            tools:text="High-precision optical microscope with 12 labelled parts" />
+
+    </LinearLayout>
+
+    <!-- Add Action Button -->
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/bg_action_btn_active"
+        android:padding="6dp"
+        android:src="@drawable/ic_add"
+        app:tint="#10B981"
+        android:contentDescription="Add to screen" />
+
+</LinearLayout>

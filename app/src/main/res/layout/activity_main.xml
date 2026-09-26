@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B1120">
+
+    <!-- Interactive Canvas Area (Hosts all draggable ModelContainerViews) -->
+    <FrameLayout
+        android:id="@+id/canvasContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false" />
+
+    <!-- Empty State View (Shown when 0 models are active) -->
+    <LinearLayout
+        android:id="@+id/layoutEmptyState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="32dp"
+        android:background="@drawable/bg_container_card"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="28dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🪐"
+            android:textSize="54sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="3D Multi-Model Studio"
+            android:textColor="#F8FAFC"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="Load multiple 3D models onto this canvas. Move, resize, rotate, and inspect part labels independently."
+            android:textColor="#94A3B8"
+            android:textSize="13sp"
+            android:lineSpacingExtra="2dp" />
+
+        <Button
+            android:id="@+id/btnEmptyAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_fab_add"
+            android:text="➕ Add First Model"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="20dp" />
+
+    </LinearLayout>
+
+    <!-- Top App Bar & Stats Toolbar -->
+    <LinearLayout
+        android:id="@+id/topToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="#D90B1120"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp"
+        android:elevation="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🪐 3D Studio"
+            android:textColor="#F8FAFC"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvModelCountBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_status_chip"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="3dp"
+            android:text="0/5 Active"
+            android:textColor="#38BDF8"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <!-- Live FPS and Memory Stats Chip -->
+        <TextView
+            android:id="@+id/tvPerformanceStats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/bg_badge_interaction"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="3dp"
+            android:text="⚡ 60 FPS • 75 MB"
+            android:textColor="#10B981"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <!-- Quick "Add All 5" Demo Button -->
+        <ImageButton
+            android:id="@+id/btnQuickAddAll"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/bg_action_btn"
+            android:src="@drawable/ic_layers"
+            android:padding="8dp"
+            app:tint="#38BDF8"
+            android:contentDescription="Add All 5 Models" />
+
+        <!-- Clear All Button -->
+        <ImageButton
+            android:id="@+id/btnClearAll"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/bg_action_btn"
+            android:src="@drawable/ic_delete_sweep"
+            android:padding="8dp"
+            app:tint="#F87171"
+            android:contentDescription="Clear All Models" />
+
+        <!-- Help Guide Button -->
+        <ImageButton
+            android:id="@+id/btnHelp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_action_btn"
+            android:src="@drawable/ic_help"
+            android:padding="8dp"
+            app:tint="#94A3B8"
+            android:contentDescription="Controls Help" />
+
+    </LinearLayout>
+
+    <!-- Bottom Floating Action Button ("+ Add Model") -->
+    <LinearLayout
+        android:id="@+id/fabAddModel"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_fab_add"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="22dp"
+        android:elevation="10dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_add"
+            app:tint="#FFFFFF"
+            android:contentDescription="Add" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Add 3D Model"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</FrameLayout>
