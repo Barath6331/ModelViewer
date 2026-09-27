@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerRoot"
+    android:layout_width="280dp"
+    android:layout_height="320dp"
+    android:background="@drawable/bg_container_card"
+    android:elevation="6dp"
+    android:clipChildren="true"
+    android:clipToPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Top Header Bar (Always Visible Actions & Title) -->
+        <LinearLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="8dp"
+            android:background="#660F172A">
+
+            <!-- Drag Handle & Model Title -->
+            <ImageView
+                android:id="@+id/ivDragHandle"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_drag_indicator"
+                app:tint="#64748B"
+                android:contentDescription="Drag Handle" />
+
+            <TextView
+                android:id="@+id/tvModelTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:text="Microscope"
+                android:textColor="#F8FAFC"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <!-- Three Always-Visible Action Buttons -->
+            <!-- 1. Interaction Mode Toggle Button -->
+            <ImageButton
+                android:id="@+id/btnToggleInteraction"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/bg_action_btn"
+                android:src="@drawable/ic_3d_rotation"
+                android:padding="6dp"
+                android:scaleType="fitCenter"
+                app:tint="#94A3B8"
+                android:contentDescription="Toggle 3D Interaction Mode" />
+
+            <!-- 2. Part Labels Toggle Button -->
+            <ImageButton
+                android:id="@+id/btnToggleLabels"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/bg_action_btn"
+                android:src="@drawable/ic_label"
+                android:padding="6dp"
+                android:scaleType="fitCenter"
+                app:tint="#94A3B8"
+                android:contentDescription="Toggle Part Labels" />
+
+            <!-- 3. Close Button -->
+            <ImageButton
+                android:id="@+id/btnClose"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/bg_action_btn_danger"
+                android:src="@drawable/ic_close"
+                android:padding="7dp"
+                android:scaleType="fitCenter"
+                app:tint="#F87171"
+                android:contentDescription="Close and Free Model" />
+
+        </LinearLayout>
+
+        <!-- Mode Status Strip / Badge -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvModeBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_normal"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
+                android:text="📍 Drag &amp; Resize"
+                android:textColor="#38BDF8"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvLabelStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Labels: Off"
+                android:textColor="#64748B"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- 3D Scene View & 2D Label Overlay Canvas -->
+        <FrameLayout
+            android:id="@+id/canvasFrame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <!-- SceneView 3D Surface -->
+            <io.github.sceneview.SceneView
+                android:id="@+id/sceneView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!-- Dynamic 2D Label Overlay -->
+            <com.barath.modelviewer.ui.LabelOverlayView
+                android:id="@+id/labelOverlayView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!-- Model Loading Indicator -->
+            <ProgressBar
+                android:id="@+id/progressBarLoading"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="#38BDF8" />
+
+            <!-- Resize Handle Indicator in Bottom-Right -->
+            <ImageView
+                android:id="@+id/ivResizeHandle"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_drag_indicator"
+                android:rotation="45"
+                app:tint="#475569"
+                android:contentDescription="Resize Handle" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
