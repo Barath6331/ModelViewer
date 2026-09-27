@@ -1,6 +1,5 @@
 package com.barath.modelviewer.model
 
-import android.content.Context
 import org.json.JSONObject
 import java.io.InputStream
 import java.nio.ByteBuffer

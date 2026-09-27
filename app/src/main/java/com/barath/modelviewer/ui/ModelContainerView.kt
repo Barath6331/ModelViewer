@@ -11,7 +11,6 @@ import android.view.ScaleGestureDetector
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.core.content.ContextCompat
 import com.barath.modelviewer.R
 import com.barath.modelviewer.databinding.ViewModelContainerBinding
 import com.barath.modelviewer.model.GlbParser
